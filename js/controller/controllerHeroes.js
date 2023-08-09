@@ -71,7 +71,7 @@ const bClearMessagesHeroes = document.querySelector("#bClearMessages");
 
 // FUNCIONES
 //console.log(removeAllStorage());
-//console.log(localStorage);
+console.log(localStorage);
 
 
 

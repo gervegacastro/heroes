@@ -2,19 +2,42 @@
 // HOME PAGE
 
 const inSearchHeroe = document.querySelector("#inSearchHeroe");
+const suggestionList = document.querySelector("#liSuggestions");
+let heroe = null;
+let searches = null;
 
+    
     inSearchHeroe.addEventListener("input", () => {
-
-        const inputSearch = inSearchHeroe.value;        
-        const heroe = findByName(inputSearch);
+        
+        heroe = findByName(inSearchHeroe.value);
         if (heroe) {
-            // que aparezca el deplegable abajo
-            // a ese desplegable (que es dinámico) le asigno un identificador (que puede ser un id o
-            // una clase) 
+            saveSearch(inSearchHeroe.value);
         }
-        //Luego en otra función por fuera le asigno otro evento al click y que me lleve a el heroe 
-        //en details. 
+
     })
+
+    inSearchHeroe.addEventListener("click", () => {
+
+        searches = findAllSearches();
+        for (let search of searches) {
+            const nuevoLi = document.createElement("li");
+            const bSuggestion = document.createElement("button");
+            bSuggestion.classList.add ("bSuggestion");
+            bSuggestion.textContent = search.name;            
+            nuevoLi.appendChild(bSuggestion);
+            suggestionList.appendChild(nuevoLi);
+        }
+               
+    })    
+
+    // Para borrar la lista de sugerencias 
+    document.addEventListener("click", (event) => {
+        if (event.target != inSearchHeroe && event.target != suggestionList) {
+            removeElement(suggestionList);
+        }
+    }) // EL PROBLEMA ES QUE UNA VEZ QUE LO REMUEVE NO LO VUELVE A CARGAR           
+        
+        
 
 
 
