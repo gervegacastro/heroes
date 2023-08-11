@@ -3,21 +3,34 @@
 
 const inSearchHeroe = document.querySelector("#inSearchHeroe");
 const suggestionList = document.querySelector("#liSuggestions");
+const bClearMessages = document.querySelector("#bClearMessages");
 let heroe = null;
 let searches = null;
+let timeOut;
 
-    
+    // Agregar a lista de sugerencias y envia mensaje de la interacción
     inSearchHeroe.addEventListener("input", () => {
-        
-        heroe = findByName(inSearchHeroe.value);
+        clearTimeOut(timeOut);
+        timeOut = setTimeout (() => {
+            heroe = findByName(inSearchHeroe.value);
         if (heroe) {
             saveSearch(inSearchHeroe.value);
+            const liMessages = document.querySelector("#liMessages")
+            const nuevoLiMessages = document.createElement("li");
+            nuevoLiMessages.textContent = "Heroe service: found heroes matching " + heroe.name;
+            liMessages.appendChild(nuevoLiMessages);
+        } // FALTA VER LO DE DARLE UN TIEMPOOO PARA QUE NO TOME TODO
+        else {
+            const liMessages = document.querySelector("#liMessages")
+            const nuevoLiMessages = document.createElement("li");
+            nuevoLiMessages.textContent = "No heroes matching " + inSearchHeroe.value;
+            liMessages.appendChild(nuevoLiMessages);
         }
-
-    })
-
+        }, 1000);        
+    })  
+    
+    // Mostrar lista de sugerencias
     inSearchHeroe.addEventListener("click", () => {
-
         searches = findAllSearches();
         for (let search of searches) {
             const nuevoLi = document.createElement("li");
@@ -27,24 +40,27 @@ let searches = null;
             nuevoLi.appendChild(bSuggestion);
             suggestionList.appendChild(nuevoLi);
         }
-               
-    })    
+    })
+        
 
     // Para borrar la lista de sugerencias 
     document.addEventListener("click", (event) => {
         if (event.target != inSearchHeroe && event.target != suggestionList) {
-            removeElement(suggestionList);
+            suggestionList.innerHTML = "";            
         }
-    }) // EL PROBLEMA ES QUE UNA VEZ QUE LO REMUEVE NO LO VUELVE A CARGAR           
-        
-        
-
-
-
-// Clear Messages button
-const bClearMessages = document.querySelector("#bClearMessages");
-
+    }) 
+       
+    // Clear Messages button
     bClearMessages.addEventListener("click", () => {
         const liMessages = document.querySelector("#liMessages");
-        removeElement(liMessages);
+        removeElement(liMessages);        
     })
+
+    // FALTA TOP HEROES QUE LOS TRAE DE LA LISTA DE HEROES
+
+// FUNCIONES
+//console.log(removeAllStorage());
+//console.log(localStorage);
+
+
+
