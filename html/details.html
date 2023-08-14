@@ -15,30 +15,41 @@
         </nav>
     </header>
 
-
-    <div>
-        <h2>XXXX Details</h2>
+    <section>
         <div>
-            <p>id:</p>
+            <h2><label for="" id="labelHeroe"></label> Details</h2>
+            <div>
+                <p>id: <label for="" id="labelId"></label></p>
+            </div>
+            <div>
+                <form action="">Hero name: <input type="text" id="inHeroe"></form>
+            </div><br><br>
+            <div>
+                <button><a href="heroes.html">go back</a></button>
+                <button id="bSave"><a href="heroes.html">save</a></button>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h2>Messages</h2>
+            <button id="bClearMessages">Clear messages</button>
         </div>
         <div>
-            <form action="">Hero name: <input type="text"></form>
-        </div><br><br>
-        <div>
-            <button>go back</button>
-            <button>save</button>
+            <ul id="listaMessagesDetails"></ul>
         </div>
-    </div>
+    </section>   
 
-    <div>
-        <h2>Messages</h2>
-        <button>Clear messages</button>
-    </div>
+ 
 
     <script src="../js/model/heroe.js"></script>
     <script src="../js/model/message.js"></script>
+    <script src="../js/model/search.js"></script>
     <script src="../js/service/heroe.js"></script>
     <script src="../js/service/message.js"></script>
+    <script src="../js/service/search.js"></script>
+    <script src="../js/controller/controllerDetails.js"></script>
     
 </body>
 </html>
