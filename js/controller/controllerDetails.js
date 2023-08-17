@@ -7,7 +7,6 @@ const inHeroe = document.querySelector("#inHeroe");
 const bSave = document.querySelector("#bSave");
 const bClearMessages = document.querySelector("#bClearMessages");
 
-
 let timeOut;
 
     // Contenido del titulo Details
@@ -25,22 +24,23 @@ let timeOut;
         }, 1000); 
     })
 
-    // Save Heroe
+    // Button Save Heroe (update en realidad) 
     bSave.addEventListener ("click", (event) => {
         event.preventDefault();
-        saveWhithOutId(inHeroe.value);
         let heroe = findByName (inHeroe.value);
-        let hereoId = heroe.id;
+        let heroeId = heroe.id;
+        updateHeroe(heroeId, inHeroe.value);
 
         const listaMessages = document.querySelector("#listaMessagesDetails");
         const nuevoLi = document.createElement("li");
-        nuevoLi.textContent = "Update hero id: " + hereoId;
+        nuevoLi.textContent = "Update hero id: " + heroeId;
         listaMessages.appendChild(nuevoLi);
     })
 
     // Lista heroes en heroes.html
     bSave.addEventListener ("click", () => {
         const listaHeroes = document.querySelector("#listaHeroes");
+        listaHeroes.innerHTML = "";
 
         let heroes = findAllHeroes();
 
@@ -53,8 +53,11 @@ let timeOut;
             bId.textContent = heroeId.valueOf();
             bHeroe.textContent = heroe.name;
             bDelete.textContent = "X";
-            bDelete.classList.add("bDeleteHeroe");
 
+            bId.classList.add("details");
+            bHeroe.classList.add("details");
+            bDelete.classList.add("bDeleteHeroe");
+    
             nuevoLiHeroes.appendChild(bId);
             nuevoLiHeroes.appendChild(bHeroe);
             nuevoLiHeroes.appendChild(bDelete);            
@@ -65,7 +68,7 @@ let timeOut;
     // Clear Messages
     bClearMessages.addEventListener("click", () => {
         const listaMessages = document.querySelector("#listaMessagesDetails");
-        removeElement(liMessages);
+        removeElement(listaMessages);
     })
 
 // FUNCIONES

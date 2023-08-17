@@ -11,7 +11,7 @@ let timeOut;
 
     // Agregar a lista de sugerencias y envia mensaje de la interacción
     inSearchHeroe.addEventListener("input", () => {
-        clearTimeOut(timeOut);
+        clearTimeout(timeOut);
         timeOut = setTimeout (() => {
             heroe = findByName(inSearchHeroe.value);
         if (heroe) {
@@ -20,7 +20,7 @@ let timeOut;
             const nuevoLiMessages = document.createElement("li");
             nuevoLiMessages.textContent = "Heroe service: found heroes matching " + heroe.name;
             liMessages.appendChild(nuevoLiMessages);
-        } // FALTA VER LO DE DARLE UN TIEMPOOO PARA QUE NO TOME TODO
+        } 
         else {
             const liMessages = document.querySelector("#liMessages")
             const nuevoLiMessages = document.createElement("li");
@@ -36,8 +36,10 @@ let timeOut;
         for (let search of searches) {
             const nuevoLi = document.createElement("li");
             const bSuggestion = document.createElement("button");
-            bSuggestion.classList.add ("bSuggestion");
-            bSuggestion.textContent = search.name;            
+            bSuggestion.textContent = search.name;
+            
+            bSuggestion.classList.add ("details");
+
             nuevoLi.appendChild(bSuggestion);
             suggestionList.appendChild(nuevoLi);
         }
@@ -50,6 +52,13 @@ let timeOut;
             suggestionList.innerHTML = "";            
         }
     }) 
+
+    // Para ir a Heroe details desde la sugerencia
+    document.addEventListener("click", (event) => {
+        if (event.target.classList.contains("details")) {
+            
+        }
+    })
        
     // Clear Messages button
     bClearMessages.addEventListener("click", () => {

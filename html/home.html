@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <script src="../js/service/heroe.js"></script>
+    <script>document.addEventListener ("DOMContentLoaded", () => {
+        domLoadHome();
+    })</script>
 </head>
 <body>
     <header>
@@ -18,7 +23,7 @@
     <section>
         <div>
             <h2>Top Heroes</h2>
-            <div id="bTopHeroes">
+            <div id="divTopHeroes">
             </div>
         </div><br>    
     </section>
@@ -44,7 +49,7 @@
 
     <script src="../js/model/heroe.js"></script>
     <script src="../js/model/message.js"></script>
-    <script src="../js/service/heroe.js"></script>
+    
     <script src="../js/service/message.js"></script>
     <script src="../js/service/search.js"></script>
     <script src="../js/controller/controllerHome.js"></script>

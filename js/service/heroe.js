@@ -79,6 +79,8 @@ function removeByName (name) {
     return "Heroe no encontrado";   
 }
 
+// OTRAS FUNCIONES
+
 function removeElement (elemento) {
     elemento.remove();
 }
@@ -89,5 +91,49 @@ function removeAllStorage() {
     }    
 }
 
-// OTRAS FUNCIONES
+function domLoadHeroes() {
+    const listaHeroes = document.querySelector("#listaHeroes");
+
+    let heroes = findAllHeroes();
+
+    for (let heroe of heroes) {
+        const nuevoLiHeroes = document.createElement ("li");
+        const bId = document.createElement("button");
+        const bHeroe = document.createElement ("button");
+        const bDelete = document.createElement("button");
+        const heroeId = heroe.id;
+        bId.textContent = heroeId.valueOf();
+        bHeroe.textContent = heroe.name;
+        bDelete.textContent = "X";
+        bDelete.classList.add("bDeleteHeroe");
+
+        nuevoLiHeroes.appendChild(bId);
+        nuevoLiHeroes.appendChild(bHeroe);
+        nuevoLiHeroes.appendChild(bDelete);            
+        listaHeroes.appendChild(nuevoLiHeroes);
+
+        const listaMessages = document.querySelector("#listaMessages");
+        const nuevoLiMessages = document.createElement("li");    
+        nuevoLiMessages.textContent = "added hero id = " + heroeId;
+        listaMessages.appendChild(nuevoLiMessages);
+    }
+}
+
+function domLoadHome() { 
+    const divTopHeroes = document.querySelector("#divTopHeroes");
+    
+    let heroes = findAllHeroes();
+    let contador = 0;
+    for (let heroe of heroes) {
+        if (contador < 4) {
+            const btnHeroe = document.createElement("button");
+            const elementHeroe = heroe.name;
+            btnHeroe.textContent = elementHeroe;
+            divTopHeroes.appendChild(btnHeroe);
+        }
+        contador = contador + 1;                    
+    }           
+}
+
+
 
