@@ -1,13 +1,54 @@
 
 // DETAILS PAGE
 
-const labelHeroe = document.querySelector("#labelHeroe");
-const labelId = document.querySelector("#labelId");
-const inHeroe = document.querySelector("#inHeroe");
-const bSave = document.querySelector("#bSave");
-const bClearMessages = document.querySelector("#bClearMessages");
-
+const labelHeroe = document.querySelector("#label-hero");
+const labelId = document.querySelector("#label-id");
+const inHeroe = document.querySelector("#hero-name-details");
+const bSave = document.querySelector("#update");
+const goBack = document.querySelector("#go-back")
+const bClearMessages = document.querySelector("#clear-Messages");
 let timeOut;
+
+    // Desde el home y desde heroes carga details.
+    document.addEventListener ("DOMContentLoaded", () => {
+        const heroNameFromHome = sessionStorage.getItem ("heroNameFromHome");
+        const heroNameFromHero = sessionStorage.getItem ("heroNameFromHero");
+        let heroName;
+
+        if (heroNameFromHome) {
+            heroName = heroNameFromHome;
+        } else if (heroNameFromHero) {
+            heroName = heroNameFromHero;
+        }
+
+        if (heroName) {
+            inHeroe.value = heroName;
+            labelHeroe.textContent = inHeroe.value;            
+            let heroe = findByName(heroName);            
+            labelId.textContent = heroe.id;
+        }
+        
+        // goBack button
+        goBack.addEventListener ("click", () => {
+            if (sessionStorage.getItem ("heroNameFromHome")){
+                window.location.href = "../../html/home.html";
+            } else if (sessionStorage.getItem ("heroNameFromHero")) {
+                window.location.href = "../../html/heroes.html";
+            }
+                        
+            /*
+            const homeButtons = document.querySelectorAll(".details");
+            console.log(homeButtons);
+            const heroButtons = document.querySelectorAll(".hero-id, .hero-name");
+            console.log(heroButtons);
+            if (homeButtons.length > 0) {
+                window.location.href = "../../html/home.html";
+            }
+            else if (heroButtons.length > 0) {
+                window.location.href = "../../html/heroes.html";
+            }*/           
+        })
+    })
 
     // Contenido del titulo Details
     inHeroe.addEventListener ("input", () => {
@@ -19,8 +60,8 @@ let timeOut;
         clearTimeout(timeOut);        
         timeOut = setTimeout(() => {
             let heroe = findByName (inHeroe.value);
-            let heroeId = heroe.id;
-            labelId.textContent = heroeId;
+            //console.log(heroe);
+            labelId.textContent = heroe.id;
         }, 1000); 
     })
 
@@ -39,7 +80,7 @@ let timeOut;
 
     // Lista heroes en heroes.html
     bSave.addEventListener ("click", () => {
-        const listaHeroes = document.querySelector("#listaHeroes");
+        const listaHeroes = document.querySelector("#hero-list");
         listaHeroes.innerHTML = "";
 
         let heroes = findAllHeroes();
@@ -75,3 +116,6 @@ let timeOut;
 //console.log(removeAllStorage());
 //console.log(localStorage);
 //console.log(findAllHeroes());
+
+
+

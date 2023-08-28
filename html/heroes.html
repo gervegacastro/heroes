@@ -2,11 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Heroes</title>
-    <script src="../js/service/heroe.js"></script>
-    <script>document.addEventListener("DOMContentLoaded", () => {
-        domLoadHeroes();
-    })</script>
+    <title>Heroes</title>    
 </head>
 <body>
     <header>
@@ -23,17 +19,17 @@
         <h2>My Heroes</h2><br>
         <form action="" id="form">
             <label for="">Hero name :</label><br>
-            <input type="text" name="" id="inAddHeroe"><br>
-            <button type="submit" id="bAddHeroe">Add hero</button>
+            <input type="text" name="" id="in-add-Hero"><br>
+            <button type="submit" id="b-add-Hero">Add hero</button>
         </form>
         <div>
-            <ul id="listaHeroes"></ul>
+            <ul id="hero-list"></ul>
         </div>
     </section>
     <section>
         <div>
             <h2>Messages</h2>
-            <button id="bClearMessages">Clear messages</button>
+            <button id="clear-Messages">Clear messages</button>
         </div>
         <div>
             <ul id="listaMessages"></ul>
@@ -44,13 +40,10 @@
 
     <script src="../js/model/heroe.js"></script>
     <script src="../js/model/message.js"></script>
-    
+    <script src="../js/service/heroe.js"></script>    
     <script src="../js/service/message.js"></script>
     <script src="../js/controller/controllerHeroes.js"></script>
-    
-    
-    
+    <script src="../js/controller/controllerDetails.js"></script>
         
-    
 </body>
 </html>

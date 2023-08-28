@@ -1,20 +1,25 @@
 
 // HEROES PAGE
 
-const bAddHeroe = document.querySelector("#bAddHeroe");
-const bClearMessagesHeroes = document.querySelector("#bClearMessages");
+const bAddHeroe = document.querySelector("#b-add-Hero");
+const bClearMessagesHeroes = document.querySelector("#clear-Messages");
+const heroList = document.querySelector("#hero-list");
 
+    // Carga heroes.html
+    document.addEventListener("DOMContentLoaded", () => {
+        domLoadHeroes();
+    })
 
     // Add Heroe
     bAddHeroe.addEventListener ("click", (event) => {
         event.preventDefault();
-        const input = document.querySelector("#inAddHeroe");
-        saveWhithOutId(input.value);
+        const input = document.querySelector("#in-add-Hero");
+        save(input.value);
     })
 
     // Carga lista de heroes cada vez que se graba
     bAddHeroe.addEventListener("click", () => {
-        const listaHeroes = document.querySelector("#listaHeroes");
+        const listaHeroes = document.querySelector("#hero-list");
         listaHeroes.innerHTML = "";
         const listaMessages = document.querySelector("#listaMessages");
         listaMessages.innerHTML = "";
@@ -26,13 +31,13 @@ const bClearMessagesHeroes = document.querySelector("#bClearMessages");
             const bId = document.createElement("button");
             const bHeroe = document.createElement ("button");
             const bDelete = document.createElement("button");
-            const heroeId = heroe.id;
-            bId.textContent = heroeId.valueOf();
+            //const heroeId = heroe.id;
+            bId.textContent = heroe.id;
             bHeroe.textContent = heroe.name;
             bDelete.textContent = "X";
 
-            bId.classList.add("details");
-            bHeroe.classList.add("details");
+            bId.classList.add("hero-id");
+            bHeroe.classList.add("hero-name");
             bDelete.classList.add("bDeleteHeroe");
     
             nuevoLiHeroes.appendChild(bId);
@@ -41,7 +46,7 @@ const bClearMessagesHeroes = document.querySelector("#bClearMessages");
             listaHeroes.appendChild(nuevoLiHeroes);    
             
             const nuevoLiMessages = document.createElement("li");    
-            nuevoLiMessages.textContent = "added hero id = " + heroeId;
+            nuevoLiMessages.textContent = "added hero id = " + heroe.id;
             listaMessages.appendChild(nuevoLiMessages);            
         }
     })
@@ -59,25 +64,34 @@ const bClearMessagesHeroes = document.querySelector("#bClearMessages");
         if (event.target.classList.contains("bDeleteHeroe")){
             const heroeName = event.target.previousSibling.textContent;
             const heroe = findByName(heroeName);
-            const idHeroe = heroe.id;
-
+            
             const listaMessages = document.querySelector("#listaMessages");
             const nuevoLiMessages = document.createElement("li");
 
-            nuevoLiMessages.textContent = "deleted hero id = " + idHeroe;
+            nuevoLiMessages.textContent = "deleted hero id = " + heroe.id;
             listaMessages.appendChild(nuevoLiMessages);  
         
             removeByName(heroeName);
         }    
     })
 
-    // Para ir a Heroe details
-    document.addEventListener("click", (event) => {
-        if (event.target.classList.contains("details")) {
-
+    // Click en heroList (id) para ir a details 
+    document.addEventListener ("click", (event) => {        
+        if (event.target.classList.contains("hero-id")) {
+            const hero = findById(event.target.textContent);
+            sessionStorage.setItem("heroNameFromHero", hero.name);
+            window.location.href = "../../html/details.html";
         }
     })
 
+    // Click en heroList (name) para ir a details
+    document.addEventListener ("click", (event) => {
+        if (event.target.classList.contains("hero-name")) {
+            sessionStorage.setItem ("heroNameFromHero", event.target.textContent);
+            window.location.href = "../../html/details.html";
+        }
+    })
+        
     // Clear Messages button in Heroes
     bClearMessagesHeroes.addEventListener("click", () => {
         const listaMessagesHeroes = document.querySelector("#listaMessages");
@@ -85,6 +99,41 @@ const bClearMessagesHeroes = document.querySelector("#bClearMessages");
     })
 
 // FUNCIONES
+
+// Carga heroes.html 
+function domLoadHeroes() {
+    const heroList = document.querySelector("#hero-list");
+
+    let heroes = findAllHeroes();
+
+    for (let heroe of heroes) {
+        const nuevoLiHeroes = document.createElement ("li");
+        const bId = document.createElement("button");
+        const bHeroe = document.createElement ("button");
+        const bDelete = document.createElement("button");
+        bId.textContent = heroe.id;
+        bHeroe.textContent = heroe.name;
+        bDelete.textContent = "X";
+
+        bId.classList.add("hero-id");
+        bHeroe.classList.add("hero-name");
+        bDelete.classList.add("bDeleteHeroe");
+
+        nuevoLiHeroes.appendChild(bId);
+        nuevoLiHeroes.appendChild(bHeroe);
+        nuevoLiHeroes.appendChild(bDelete);            
+        heroList.appendChild(nuevoLiHeroes);
+
+        const listaMessages = document.querySelector("#listaMessages");
+        const nuevoLiMessages = document.createElement("li");    
+        nuevoLiMessages.textContent = "added hero id = " + heroe.id;
+        listaMessages.appendChild(nuevoLiMessages);
+    }
+}
+
 //console.log(removeAllStorage());
 //console.log(localStorage);
+//console.log(sessionStorage);
+
+
 
