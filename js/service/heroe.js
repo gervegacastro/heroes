@@ -72,17 +72,7 @@ function removeByName (name) {
     return "Heroe no encontrado";   
 }
 
-// OTRAS FUNCIONES
 
-function removeElement (elemento) {
-    elemento.remove();
-}
-
-function removeAllStorage() {
-    for (let key in localStorage) {
-        localStorage.removeItem(key);
-    }    
-}
 
 
 

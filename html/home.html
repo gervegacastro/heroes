@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="../css/home.css">    
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <link rel="stylesheet" href="../css/normalize.css">    
     <script></script>
 </head>
 <body>
@@ -20,7 +21,7 @@
     <section>
         <div>
             <h2>Top Heroes</h2>
-            <div id="divTopHeroes">
+            <div id="top-heroes-home">
             </div>
         </div><br>    
     </section>
@@ -28,18 +29,18 @@
     <section>
         <div class="">
             <label for="">Hero Search</label><br>
-            <input type="text" id="inSearchHeroe">
-            <ul id="liSuggestions"></ul>
+            <input type="text" id="hero-search-home">
+            <ul id="suggestion-list-home"></ul>
         </div>
     </section>  
     
     <section>
         <div>
             <h2>Messages</h2><br>
-            <button id="bClearMessages">Clear messages</button>
+            <button id="clear-messages-home">Clear messages</button>
         </div>
         <div>
-            <ul id="liMessages"></ul>
+            <ul id="messages-list-home"></ul>
         </div>
     </section>
     
@@ -48,7 +49,7 @@
     <script src="../js/model/message.js"></script>
     <script src="../js/service/heroe.js"></script>
     <script src="../js/service/message.js"></script>
-    <script src="../js/service/search.js"></script>
+    <script src="../js/service/functions.js"></script>
     <script src="../js/controller/controllerHome.js"></script>
     <script src="../js/controller/controllerDetails.js"></script>
     

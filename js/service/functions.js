@@ -1,3 +1,4 @@
+// OTRAS FUNCIONES
 
 function saveSearch (searchName) {
     const search = {
@@ -27,4 +28,20 @@ function findAllSearches () {
         }
     }
     return searches;
+}
+
+function removeElement (elemento) {
+    elemento.remove();
+}
+
+function removeAllStorage() {
+    for (let key in localStorage) {
+        localStorage.removeItem(key);
+    }    
+}
+
+function removeAllSessionStorage() {
+    for (let Key in sessionStorage) {
+        sessionStorage.removeItem(Key);
+    }
 }

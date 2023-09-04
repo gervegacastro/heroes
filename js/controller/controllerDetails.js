@@ -1,12 +1,16 @@
 
 // DETAILS PAGE
 
-const labelHeroe = document.querySelector("#label-hero");
-const labelId = document.querySelector("#label-id");
-const inHeroe = document.querySelector("#hero-name-details");
+const labelHeroDetails = document.querySelector("#label-hero-details");
+const labelIdDetails = document.querySelector("#label-id-details");
+const heroNameDetails = document.querySelector("#hero-name-details");
 const bSave = document.querySelector("#update");
 const goBack = document.querySelector("#go-back")
-const bClearMessages = document.querySelector("#clear-Messages");
+const clearMessagesDetails = document.querySelector("#clear-messages-details");
+const messagesListDetails = document.querySelector("#messages-list-details");
+
+const heroListHeroes = document.querySelector("#hero-list-heroes");
+const messagesListHeroes = document.querySelector("#messages-list-heroes");
 let timeOut;
 
     // Desde el home y desde heroes carga details.
@@ -22,11 +26,33 @@ let timeOut;
         }
 
         if (heroName) {
-            inHeroe.value = heroName;
-            labelHeroe.textContent = inHeroe.value;            
-            let heroe = findByName(heroName);            
-            labelId.textContent = heroe.id;
+            heroNameDetails.value = heroName;
+            labelHeroDetails.textContent = heroNameDetails.value;            
+            let hero = findByName(heroName);            
+            labelIdDetails.textContent = hero.id;
         }
+
+        const newLiMessages = document.createElement("li");    
+        newLiMessages.textContent = "fetched hero id = " + labelIdDetails.textContent;
+        messagesListDetails.appendChild(newLiMessages);
+
+        //save/update button
+        bSave.addEventListener ("click", (event) => {
+            event.preventDefault();
+            let hero = findByName(heroName);
+            updateHeroe(hero.id, heroNameDetails.value);
+
+            const newLi = document.createElement("li");
+            newLi.textContent = "Update hero id: " + hero.id;
+            messagesListDetails.appendChild(newLi);
+            
+            if (sessionStorage.getItem ("heroNameFromHome")){
+                window.location.href = "../../html/home.html";                                
+            } else if (sessionStorage.getItem ("heroNameFromHero")) {
+                window.location.href = "../../html/heroes.html";                            
+            }
+            removeAllSessionStorage();
+        })
         
         // goBack button
         goBack.addEventListener ("click", () => {
@@ -35,86 +61,24 @@ let timeOut;
             } else if (sessionStorage.getItem ("heroNameFromHero")) {
                 window.location.href = "../../html/heroes.html";
             }
-                        
-            /*
-            const homeButtons = document.querySelectorAll(".details");
-            console.log(homeButtons);
-            const heroButtons = document.querySelectorAll(".hero-id, .hero-name");
-            console.log(heroButtons);
-            if (homeButtons.length > 0) {
-                window.location.href = "../../html/home.html";
-            }
-            else if (heroButtons.length > 0) {
-                window.location.href = "../../html/heroes.html";
-            }*/           
+            removeAllSessionStorage();          
         })
     })
 
     // Contenido del titulo Details
-    inHeroe.addEventListener ("input", () => {
-        labelHeroe.textContent = inHeroe.value;
-    })
-
-    // Contenido del id
-    inHeroe.addEventListener ("input", () => {
-        clearTimeout(timeOut);        
-        timeOut = setTimeout(() => {
-            let heroe = findByName (inHeroe.value);
-            //console.log(heroe);
-            labelId.textContent = heroe.id;
-        }, 1000); 
-    })
-
-    // Button Save Heroe (update en realidad) 
-    bSave.addEventListener ("click", (event) => {
-        event.preventDefault();
-        let heroe = findByName (inHeroe.value);
-        let heroeId = heroe.id;
-        updateHeroe(heroeId, inHeroe.value);
-
-        const listaMessages = document.querySelector("#listaMessagesDetails");
-        const nuevoLi = document.createElement("li");
-        nuevoLi.textContent = "Update hero id: " + heroeId;
-        listaMessages.appendChild(nuevoLi);
-    })
-
-    // Lista heroes en heroes.html
-    bSave.addEventListener ("click", () => {
-        const listaHeroes = document.querySelector("#hero-list");
-        listaHeroes.innerHTML = "";
-
-        let heroes = findAllHeroes();
-
-        for (let heroe of heroes) {
-            const nuevoLiHeroes = document.createElement ("li");
-            const bId = document.createElement("button");
-            const bHeroe = document.createElement ("button");
-            const bDelete = document.createElement("button");
-            const heroeId = heroe.id;
-            bId.textContent = heroeId.valueOf();
-            bHeroe.textContent = heroe.name;
-            bDelete.textContent = "X";
-
-            bId.classList.add("details");
-            bHeroe.classList.add("details");
-            bDelete.classList.add("bDeleteHeroe");
-    
-            nuevoLiHeroes.appendChild(bId);
-            nuevoLiHeroes.appendChild(bHeroe);
-            nuevoLiHeroes.appendChild(bDelete);            
-            listaHeroes.appendChild(nuevoLiHeroes);
-        }        
+    heroNameDetails.addEventListener ("input", () => {
+        labelHeroDetails.textContent = heroNameDetails.value;
     })
 
     // Clear Messages
-    bClearMessages.addEventListener("click", () => {
-        const listaMessages = document.querySelector("#listaMessagesDetails");
-        removeElement(listaMessages);
+    clearMessagesDetails.addEventListener("click", () => {        
+        removeElement(messagesListDetails);
     })
 
 // FUNCIONES
 //console.log(removeAllStorage());
 //console.log(localStorage);
+//console.log(removeAllSessionStorage());
 //console.log(findAllHeroes());
 
 
