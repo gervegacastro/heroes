@@ -81,6 +81,7 @@ function domLoadHeroes() {
         bHero.textContent = hero.name;
         bDelete.textContent = "X";
 
+        newLiHeroes.classList.add ("new-li");
         bId.classList.add("hero-id");
         bHero.classList.add("hero-name");
         bDelete.classList.add("bDeleteHeroe");

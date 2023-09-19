@@ -3,43 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Details</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/details.css">
 </head>
 <body>
-    <header>
-        <h1>Tour of Heroes</h1>
-        <nav>
-            <div>
+    <div class="div-container">
+        <header class="header">
+            <h1>Tour of Heroes</h1>
+            <nav>
                 <a href="home.html">Dashboard</a>
-                <a href="heroes.html">Heroes</a>
-            </div>
-        </nav>
-    </header>
-
-    <section>
-        <div>
+                <a href="heroes.html">Heroes</a>               
+            </nav>
+        </header>
+    
+        <section class="section1">
             <h2><label for="" id="label-hero-details"></label> Details</h2>
-            <div>
-                <p>id: <label for="" id="label-id-details"></label></p>
+            <div><p>id: <label for="" id="label-id-details"></label></p></div>
+            <div class="section1__form">
+                <form action=""><b>Hero name: </b><input type="text" id="hero-name-details"></form>
             </div>
-            <div>
-                <form action="">Hero name: <input type="text" id="hero-name-details"></form>
-            </div><br><br>
-            <div>
+            <div class="section1__buttons">
                 <button id="go-back">go back</button>
                 <button id="update">save</a></button>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div>
+            </div>            
+        </section>
+    
+        <section class="section2">
             <h2>Messages</h2>
-            <button id="clear-messages-details">Clear messages</button>
-        </div>
-        <div>
-            <ul id="messages-list-details"></ul>
-        </div>
-    </section>   
+            <div><button id="clear-messages-details">Clear messages</button></div>
+            <div><ul id="messages-list-details"></ul></div>
+        </section>   
+    </div>
+    
 
  
 

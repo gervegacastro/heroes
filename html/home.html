@@ -3,46 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="../css/home.css">
-    <link rel="stylesheet" href="../css/normalize.css">    
-    <script></script>
+    <link rel="stylesheet" type="text/css" href="../css/home.css">        
+    <link rel="stylesheet" href="../css/normalize.css">
 </head>
 <body>
-    <header>
-        <h1>Tour of Heroes</h1>
-        <nav>
-            <div>
+    <div class="div-container">
+        <header class="header">
+            <h1>Tour of Heroes</h1>
+            <nav>
                 <a href="home.html">Dashboard</a>
                 <a href="heroes.html">Heroes</a>
-            </div>
-        </nav>   
-    </header>
-
-    <section>
-        <div>
-            <h2>Top Heroes</h2>
-            <div id="top-heroes-home">
-            </div>
-        </div><br>    
-    </section>
-
-    <section>
-        <div class="">
-            <label for="">Hero Search</label><br>
-            <input type="text" id="hero-search-home">
-            <ul id="suggestion-list-home"></ul>
-        </div>
-    </section>  
+            </nav>                           
+        </header>
     
-    <section>
-        <div>
-            <h2>Messages</h2><br>
-            <button id="clear-messages-home">Clear messages</button>
-        </div>
-        <div>
-            <ul id="messages-list-home"></ul>
-        </div>
-    </section>
+        <section class="section1">
+            <h2 class="section1__title">Top Heroes</h2>
+            <div id="top-heroes-home"></div>        
+        </section>
+        
+        <section class="section2">
+            <label>Hero Search</label><br>
+            <div><input type="text" id="hero-search-home"></div>
+            <div><ul id="suggestion-list-home"></ul></div>        
+        </section>
+        
+        <section class="section3">
+            <h2>Messages</h2>
+            <div><button id="clear-messages-home">Clear messages</button></div>
+            <div><ul id="messages-list-home"></ul></div>
+        </section>
+    </div>
+    
     
 
     <script src="../js/model/heroe.js"></script>

@@ -2,41 +2,36 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Heroes</title>    
+    <title>Heroes</title>
+    <link rel="stylesheet" href="../css/heroes.css">
+    <link rel="stylesheet" href="../css/normalize.css">    
 </head>
 <body>
-    <header>
-        <h1>Tour of Heroes</h1>    
+    <div class="div-container">
+        <header class="header">
+            <h1>Tour of Heroes</h1>    
             <nav>        
-                <div>
-                    <a href="home.html">Dashboard</a>
-                    <a href="heroes.html">Heroes</a>
-                </div>
+                <a href="home.html">Dashboard</a>
+                <a href="heroes.html">Heroes</a>            
             </nav>        
-    </header>
-
-    <section>
-        <h2>My Heroes</h2><br>
-        <form action="" id="form">
-            <label for="">Hero name :</label><br>
-            <input type="text" name="" id="in-add-hero"><br>
-            <button type="submit" id="b-add-hero">Add hero</button>
-        </form>
-        <div>
-            <ul id="hero-list-heroes"></ul>
-        </div>
-    </section>
-    <section>
-        <div>
-            <h2>Messages</h2>
-            <button id="clear-messages-heroes">Clear messages</button>
-        </div>
-        <div>
-            <ul id="messages-list-heroes"></ul>
-        </div>
-    </section>
-
+        </header>
     
+        <section class="section1">
+            <h2>My Heroes</h2>
+            <form action="" id="form">
+                <label for="">Hero name :</label>
+                <input type="text" name="" id="in-add-hero">
+                <button type="submit" id="b-add-hero">Add hero</button>
+            </form>
+            <div><ul id="hero-list-heroes"></ul></div>
+        </section>
+
+        <section class="section2">
+            <h2>Messages</h2>
+            <div><button id="clear-messages-heroes">Clear messages</button></div>
+            <div><ul id="messages-list-heroes"></ul></div>
+        </section>
+    </div>    
 
     <script src="../js/model/heroe.js"></script>
     <script src="../js/model/message.js"></script>
