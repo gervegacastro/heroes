@@ -86,6 +86,10 @@ nav :hover {
     margin: 3px;
 }
 
+.new-li:hover {
+    transform: scale(1.02);
+}
+
 .hero-id {
     border: #fff solid 1px;
     border-radius: 4px;
